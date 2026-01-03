@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ChevronLeft, ChevronRight, LayoutGrid, List } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, LayoutGrid, List, Package, AlertCircle, TrendingDown } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import {
     fetchProductsByCategory,
@@ -89,6 +89,13 @@ const CategoryProductsPage: React.FC = () => {
 
     const isLoading = status === 'loading';
 
+    // Calculate category-specific stats
+    const categoryStats = useMemo(() => {
+        const lowStock = products.filter(p => p.stock > 0 && p.stock <= 10).length;
+        const outOfStock = products.filter(p => p.stock === 0).length;
+        return { lowStock, outOfStock };
+    }, [products]);
+
     return (
         <div className="space-y-4">
             {/* Back link */}
@@ -98,6 +105,37 @@ const CategoryProductsPage: React.FC = () => {
                     Back to Categories
                 </Link>
             </Button>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">Total Products</CardTitle>
+                        <Package className="w-4 h-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">{total}</div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">Low Stock</CardTitle>
+                        <AlertCircle className="w-4 h-4 text-yellow-500" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold text-yellow-600">{categoryStats.lowStock}</div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">Out of Stock</CardTitle>
+                        <TrendingDown className="w-4 h-4 text-destructive" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold text-destructive">{categoryStats.outOfStock}</div>
+                    </CardContent>
+                </Card>
+            </div>
 
             {/* Header */}
             <Card>
