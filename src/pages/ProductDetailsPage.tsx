@@ -264,7 +264,7 @@ const ProductDetailsPage: React.FC = () => {
                                     </div>
                                     <CardContent className="p-2">
                                         <p className="text-xs font-medium truncate">{p.title}</p>
-                                        <p className="text-sm font-semibold mt-1">${(p.price * (1 - p.discountPercentage / 100)).toFixed(2)}</p>
+                                        <p className="text-sm font-semibold mt-1">₹{(p.price * (1 - p.discountPercentage / 100)).toFixed(2)}</p>
                                     </CardContent>
                                 </Card>
                             </Link>
