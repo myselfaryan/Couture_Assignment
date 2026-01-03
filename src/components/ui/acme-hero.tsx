@@ -193,7 +193,7 @@ export function AcmeHero() {
                                 <div className="relative w-full">
                                     <div className="relative w-full rounded-3xl overflow-hidden border shadow-2xl">
                                         <img
-                                            src="/public/screenshot.png"
+                                            src="/screenshot.png"
                                             alt="Dashboard Preview"
                                             className="w-full h-full object-center block rounded-3xl"
                                         />
