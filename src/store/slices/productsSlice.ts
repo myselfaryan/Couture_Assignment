@@ -17,7 +17,7 @@ interface ProductsState {
     searchQuery: string;
     selectedCategory: string;
     sortBy: SortBy;
-    sortOrder: SortOrder;
+    sortOrder: SortOrder; 
     currentPage: number;
     itemsPerPage: number;
 }
@@ -35,7 +35,7 @@ const initialState: ProductsState = {
     error: null,
     searchQuery: '',
     selectedCategory: '',
-    sortBy: 'title',
+    sortBy: 'stock',
     sortOrder: 'asc',
     currentPage: 1,
     itemsPerPage: 20,

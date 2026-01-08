@@ -191,6 +191,7 @@ const InventoryPage: React.FC = () => {
                                 <SelectItem value="price-asc">Price Low-High</SelectItem>
                                 <SelectItem value="price-desc">Price High-Low</SelectItem>
                                 <SelectItem value="rating-desc">Rating High-Low</SelectItem>
+                                <SelectItem value="sort-asc">Sort Low-High</SelectItem>
                             </SelectContent>
                         </Select>
 
